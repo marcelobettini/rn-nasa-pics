@@ -1,8 +1,23 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {TouchableWithoutFeedback, StyleSheet, Image} from 'react-native';
 import {PostImageType} from '../../types';
-const PostImage: FC<PostImageType> = ({url}) => {
-  return <Image source={{uri: url}} style={styles.img} />;
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationParams} from '../../types';
+type PostImageNavigationProps = NativeStackNavigationProp<
+  StackNavigationParams,
+  'PicInfo'
+>;
+const PostImage: FC<PostImageType> = ({explanation, title, date, url}) => {
+  const {navigate} = useNavigation<PostImageNavigationProps>();
+  const handlePress = () => {
+    navigate('PicInfo', {title, date, explanation, url});
+  };
+  return (
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <Image source={{uri: url}} style={styles.img} />
+    </TouchableWithoutFeedback>
+  );
 };
 const styles = StyleSheet.create({
   img: {

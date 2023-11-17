@@ -1,21 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-
 import {SafeAreaView, StyleSheet, useColorScheme, Platform} from 'react-native';
-import Home from './src/views/Home';
+
+import Router from './src/routes/Router';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <SafeAreaView style={styles.container}>
-      <Home />
+      <Router />
     </SafeAreaView>
   );
 }
@@ -23,7 +16,6 @@ function App(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? 25 : 0, // Añadir relleno solo en Android
   },
 });
 

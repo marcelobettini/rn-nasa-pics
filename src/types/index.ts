@@ -7,3 +7,8 @@ export type PostImageType = {
   title?: string;
   url?: string;
 };
+
+export type StackNavigationParams = {
+  Home: undefined;
+  PicInfo: PostImageType;
+};

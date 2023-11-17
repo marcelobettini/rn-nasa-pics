@@ -3,13 +3,23 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import React, {FC} from 'react';
-import {PostImageType} from '../../types';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {PostImageType, StackNavigationParams} from '../../types';
+type PostImageNavigationProps = NativeStackNavigationProp<
+  StackNavigationParams,
+  'PicInfo'
+>;
 
-const TodayImage: FC<PostImageType> = ({date, title, url}) => {
+const TodayImage: FC<PostImageType> = ({date, title, url, explanation}) => {
+  const {navigate} = useNavigation<PostImageNavigationProps>();
+  function handleViewPress() {
+    navigate('PicInfo', {date, title, url, explanation});
+  }
   return (
     <View style={styles.container}>
       {!url ? (
@@ -21,7 +31,12 @@ const TodayImage: FC<PostImageType> = ({date, title, url}) => {
       )}
       <Text style={styles.ttl}>{title}</Text>
       <Text style={styles.subTtl}>{date}</Text>
-      <Button title="+ INFO" />
+      <TouchableHighlight
+        style={styles.btn}
+        underlayColor={'lightgrey'}
+        onPress={handleViewPress}>
+        <Text>+ INFO</Text>
+      </TouchableHighlight>
     </View>
   );
 };
@@ -32,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     height: '58%',
     marginTop: 10,
-    borderWidth: 2,
+    borderWidth: 0.5,
     borderColor: 'black',
     borderRadius: 10,
     padding: 10,
@@ -50,5 +65,15 @@ const styles = StyleSheet.create({
   subTtl: {
     fontSize: 18,
     marginBottom: 10,
+  },
+  btn: {
+    alignSelf: 'flex-end',
+    padding: 5,
+    height: 50,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    borderWidth: 0.5,
   },
 });
