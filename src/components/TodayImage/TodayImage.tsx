@@ -15,10 +15,16 @@ type PostImageNavigationProps = NativeStackNavigationProp<
   '+ Info'
 >;
 
-const TodayImage: FC<PostImageType> = ({date, title, url, explanation}) => {
+const TodayImage: FC<PostImageType> = ({
+  date,
+  title,
+  url,
+  explanation,
+  copyright,
+}) => {
   const {navigate} = useNavigation<PostImageNavigationProps>();
   function handleViewPress() {
-    navigate('+ Info', {date, title, url, explanation});
+    navigate('+ Info', {date, title, url, explanation, copyright});
   }
   function handleNavigate() {
     navigate('Date Picker');
@@ -33,7 +39,10 @@ const TodayImage: FC<PostImageType> = ({date, title, url, explanation}) => {
         <Image source={{uri: url}} style={styles.img} />
       )}
       <Text style={styles.ttl}>{title}</Text>
-      <Text style={styles.subTtl}>{date}</Text>
+      <Text style={styles.subTtl}>
+        {date} {copyright}
+      </Text>
+
       <View style={styles.btnContainer}>
         <TouchableHighlight
           style={styles.btn}
@@ -56,7 +65,6 @@ export default TodayImage;
 
 const styles = StyleSheet.create({
   container: {
-    height: '58%',
     marginTop: 10,
     borderWidth: 0.5,
     borderColor: 'black',

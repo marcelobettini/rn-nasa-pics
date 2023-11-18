@@ -24,12 +24,12 @@ const Home = () => {
     const getLastFiveImages = async () => {
       try {
         const date = new Date();
-        const today = format(subDays(date, 2), 'yyyy-MM-dd');
-        const todayMinusFive = format(sub(date, {days: 6}), 'yyyy-MM-dd');
+        const yesterday = format(subDays(date, 1), 'yyyy-MM-dd');
+        const todayMinusFive = format(sub(date, {days: 5}), 'yyyy-MM-dd');
         const lastFiveDaysImagesResponse: PostImageType[] = await getData(
-          `&start_date=${todayMinusFive}&end_date=${today}`,
+          `&start_date=${todayMinusFive}&end_date=${yesterday}`,
         );
-        setLastFiveImages(lastFiveDaysImagesResponse);
+        setLastFiveImages(lastFiveDaysImagesResponse?.reverse());
       } catch (error) {
         console.error(error);
       }
@@ -38,20 +38,21 @@ const Home = () => {
     getLastFiveImages();
   }, []);
   return (
-    <View style={styles.container}>
+    <>
       <Header />
-      <TodayImage {...todayImage} />
-      {!lastFiveImages.length ? (
-        <View style={styles.gallerySpinner}>
-          <ActivityIndicator size={'large'} />
-        </View>
-      ) : (
-        <LastFiveDaysImages lastFiveImages={lastFiveImages} />
-      )}
-    </View>
+      <View style={styles.container}>
+        <TodayImage {...todayImage} />
+        {!lastFiveImages.length ? (
+          <View style={styles.gallerySpinner}>
+            <ActivityIndicator size={'large'} />
+          </View>
+        ) : (
+          <LastFiveDaysImages lastFiveImages={lastFiveImages} />
+        )}
+      </View>
+    </>
   );
 };
-<Header />;
 
 export default Home;
 

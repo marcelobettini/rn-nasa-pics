@@ -1,5 +1,5 @@
 const api_key: string = 'ksjiDen2KX1gNc67jJT6d8GyZzdwdKVot9SQHdEx';
-const base_url: string = 'https://api.nasa.gov/planetary/apod';
+export const base_url: string = 'https://api.nasa.gov/planetary/apod';
 export default async function getData(params?: string) {
   try {
     const res = await fetch(
@@ -15,3 +15,19 @@ export default async function getData(params?: string) {
     return Promise.reject(error);
   }
 }
+
+// export default async function getData(params?: string) {
+//   const url = new URL(base_url);
+//   if (params) {
+//     url.search = new URLSearchParams(params).toString();
+//   }
+
+//   const res = await fetch(`${url}?api_key=${api_key}`);
+
+//   if (!res.ok) {
+//     throw new Error(`Request failed with status ${res.status}`);
+//   }
+
+//   const data = await res.json();
+//   return data;
+// }

@@ -4,16 +4,15 @@ import React from 'react';
 const Header = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.leftContainer}>
-        <Text style={styles.title}>SPACEPICS</Text>
-      </View>
-      <View style={styles.rightContainer}>
-        <Image
-          style={styles.logo}
-          source={require('../../assets/nasa_logo.png')}
-          alt="Nasa logo"
-        />
-      </View>
+      <Text>
+        <Text style={styles.title}>APOD </Text>
+        Astronomy Picture of the Day
+      </Text>
+      <Image
+        style={styles.logo}
+        source={require('../../assets/nasa_logo.png')}
+        alt="Nasa logo"
+      />
     </View>
   );
 };
@@ -22,16 +21,10 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  leftContainer: {
-    flex: 1,
-    alignItems: 'flex-start',
-  },
-  rightContainer: {
-    flex: 1,
-    alignItems: 'flex-end',
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: 20,

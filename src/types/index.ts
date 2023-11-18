@@ -1,4 +1,5 @@
 export type PostImageType = {
+  copyright?: string;
   date?: string;
   explanation?: string;
   hdurl?: string;

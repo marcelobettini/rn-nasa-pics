@@ -14,7 +14,7 @@ import {StackNavigationParams} from '../../types/index';
 
 const PicInfo = () => {
   const {
-    params: {url, title, date, explanation},
+    params: {url, title, date, explanation, copyright},
   } =
     useRoute<
       NativeStackScreenProps<StackNavigationParams, '+ Info'>['route']
@@ -31,9 +31,10 @@ const PicInfo = () => {
           <Image source={{uri: url}} style={styles.img} />
         )}
         <Text style={styles.ttl}>{title}</Text>
-        <Text style={styles.subTtl}>{date}</Text>
         <ScrollView>
           <Text style={styles.explanation}>{explanation}</Text>
+          <Text>{copyright}</Text>
+          <Text>{date}</Text>
         </ScrollView>
       </View>
     </>
@@ -51,13 +52,10 @@ const styles = StyleSheet.create({
   },
   imgLoader: {height: 300, justifyContent: 'center'},
   ttl: {
-    fontSize: 24,
-  },
-  subTtl: {
-    fontSize: 18,
-    marginBottom: 10,
+    fontSize: 22,
   },
   explanation: {
+    marginVertical: 10,
     fontSize: 16,
   },
 });

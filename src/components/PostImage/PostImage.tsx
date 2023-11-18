@@ -8,10 +8,16 @@ type PostImageNavigationProps = NativeStackNavigationProp<
   StackNavigationParams,
   '+ Info'
 >;
-const PostImage: FC<PostImageType> = ({explanation, title, date, url}) => {
+const PostImage: FC<PostImageType> = ({
+  explanation,
+  title,
+  date,
+  url,
+  copyright,
+}) => {
   const {navigate} = useNavigation<PostImageNavigationProps>();
   const handlePress = () => {
-    navigate('+ Info', {title, date, explanation, url});
+    navigate('+ Info', {title, date, explanation, url, copyright});
   };
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
@@ -21,8 +27,8 @@ const PostImage: FC<PostImageType> = ({explanation, title, date, url}) => {
 };
 const styles = StyleSheet.create({
   img: {
-    height: 200,
-    width: 200,
+    height: '90%',
+    width: 150,
     borderRadius: 10,
     marginBottom: 10,
     marginEnd: 10,
