@@ -12,13 +12,16 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {PostImageType, StackNavigationParams} from '../../types';
 type PostImageNavigationProps = NativeStackNavigationProp<
   StackNavigationParams,
-  'PicInfo'
+  '+ Info'
 >;
 
 const TodayImage: FC<PostImageType> = ({date, title, url, explanation}) => {
   const {navigate} = useNavigation<PostImageNavigationProps>();
   function handleViewPress() {
-    navigate('PicInfo', {date, title, url, explanation});
+    navigate('+ Info', {date, title, url, explanation});
+  }
+  function handleNavigate() {
+    navigate('Date Picker');
   }
   return (
     <View style={styles.container}>
@@ -31,12 +34,20 @@ const TodayImage: FC<PostImageType> = ({date, title, url, explanation}) => {
       )}
       <Text style={styles.ttl}>{title}</Text>
       <Text style={styles.subTtl}>{date}</Text>
-      <TouchableHighlight
-        style={styles.btn}
-        underlayColor={'lightgrey'}
-        onPress={handleViewPress}>
-        <Text>+ INFO</Text>
-      </TouchableHighlight>
+      <View style={styles.btnContainer}>
+        <TouchableHighlight
+          style={styles.btn}
+          underlayColor={'lightgrey'}
+          onPress={handleViewPress}>
+          <Text>+ INFO</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.btn}
+          underlayColor={'lightgrey'}
+          onPress={handleNavigate}>
+          <Text>DAY PICK</Text>
+        </TouchableHighlight>
+      </View>
     </View>
   );
 };
@@ -75,5 +86,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     borderWidth: 0.5,
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

@@ -17,7 +17,7 @@ const PicInfo = () => {
     params: {url, title, date, explanation},
   } =
     useRoute<
-      NativeStackScreenProps<StackNavigationParams, 'PicInfo'>['route']
+      NativeStackScreenProps<StackNavigationParams, '+ Info'>['route']
     >();
   return (
     <>

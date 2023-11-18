@@ -6,12 +6,12 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationParams} from '../../types';
 type PostImageNavigationProps = NativeStackNavigationProp<
   StackNavigationParams,
-  'PicInfo'
+  '+ Info'
 >;
 const PostImage: FC<PostImageType> = ({explanation, title, date, url}) => {
   const {navigate} = useNavigation<PostImageNavigationProps>();
   const handlePress = () => {
-    navigate('PicInfo', {title, date, explanation, url});
+    navigate('+ Info', {title, date, explanation, url});
   };
   return (
     <TouchableWithoutFeedback onPress={handlePress}>

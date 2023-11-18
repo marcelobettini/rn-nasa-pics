@@ -10,5 +10,6 @@ export type PostImageType = {
 
 export type StackNavigationParams = {
   Home: undefined;
-  PicInfo: PostImageType;
+  '+ Info': PostImageType;
+  'Date Picker': undefined;
 };
