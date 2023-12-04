@@ -39,9 +39,6 @@ const TodayImage: FC<PostImageType> = ({
         <Image source={{uri: url}} style={styles.img} />
       )}
       <Text style={styles.ttl}>{title}</Text>
-      <Text style={styles.subTtl}>
-        {date} {copyright}
-      </Text>
 
       <View style={styles.btnContainer}>
         <TouchableHighlight

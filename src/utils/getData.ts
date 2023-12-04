@@ -15,19 +15,3 @@ export default async function getData(params?: string) {
     return Promise.reject(error);
   }
 }
-
-// export default async function getData(params?: string) {
-//   const url = new URL(base_url);
-//   if (params) {
-//     url.search = new URLSearchParams(params).toString();
-//   }
-
-//   const res = await fetch(`${url}?api_key=${api_key}`);
-
-//   if (!res.ok) {
-//     throw new Error(`Request failed with status ${res.status}`);
-//   }
-
-//   const data = await res.json();
-//   return data;
-// }

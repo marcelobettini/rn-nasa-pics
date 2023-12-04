@@ -30,7 +30,6 @@ function DatePicker() {
     <>
       <Header></Header>
       <View style={styles.container}>
-        <Text style={styles.ttl}>Pick one from the calendar</Text>
         <Calendar
           date={datePick}
           mode="date"
