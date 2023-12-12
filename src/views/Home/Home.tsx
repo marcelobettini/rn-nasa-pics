@@ -29,7 +29,10 @@ const Home = () => {
         const lastFiveDaysImagesResponse: PostImageType[] = await getData(
           `&start_date=${todayMinusFive}&end_date=${yesterday}`,
         );
-        setLastFiveImages(lastFiveDaysImagesResponse?.reverse());
+        const filteredResponse = lastFiveDaysImagesResponse.filter(
+          img => img.media_type === 'image',
+        );
+        setLastFiveImages(filteredResponse?.reverse());
       } catch (error) {
         console.error(error);
       }
@@ -41,7 +44,14 @@ const Home = () => {
     <>
       <Header />
       <View style={styles.container}>
-        <TodayImage {...todayImage} />
+        {todayImage.media_type === 'image' ? (
+          <TodayImage {...todayImage} />
+        ) : lastFiveImages.length ? (
+          <TodayImage {...lastFiveImages[lastFiveImages.length - 1]} />
+        ) : (
+          <ActivityIndicator size={'large'} />
+        )}
+
         {!lastFiveImages.length ? (
           <View style={styles.gallerySpinner}>
             <ActivityIndicator size={'large'} />
